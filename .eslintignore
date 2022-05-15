@@ -1,0 +1,7 @@
+
+.idea
+*.iml
+build/*.js
+src/assets
+public
+dist

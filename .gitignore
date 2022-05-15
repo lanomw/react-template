@@ -1,0 +1,12 @@
+# IDE
+.vscode/*
+.idea
+*.iml
+
+# exclude
+build
+node_modules
+
+# lock
+package-lock.json
+yarn.lock

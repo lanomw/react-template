@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "target": "ES5",
+        "module": "ESNext",
+        "strict": true,
+        "jsx": "react",
+        "listFiles": true,
+        "importHelpers": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "sourceMap": true,
+        "removeComments": true,
+        "downlevelIteration": true,
+        "baseUrl": "."
+    },
+    "paths": {
+        "@/*": ["src/*"]
+    },
+    "lib": ["ES6", "dom"],
+    "include": [],
+    "exclude": ["build", "scripts", "node_modules"]
+}
