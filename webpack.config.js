@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
     mode: 'development',
@@ -103,8 +102,7 @@ module.exports = {
             template: path.resolve(__dirname, './public/index.html')
         }),
         new HotModuleReplacementPlugin(),
-        new MiniCssExtractPlugin(),
-        new ESLintPlugin()
+        new MiniCssExtractPlugin()
     ],
     devServer: {
         port: 9000,
