@@ -1,7 +1,9 @@
-import * as React from 'react';
+import React from 'react'
+
+import './app.css'
 
 function App() {
-    return <>fs</>;
+    return <h2>webpack5-react-ts</h2>
 }
 
-export default App;
+export default App
