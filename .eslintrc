@@ -50,15 +50,17 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
+    "plugin:react/jsx-runtime",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/jsx-runtime"
+    "plugin:prettier/recommended"
   ],
   // 此项是用来提供插件的，插件名称省略了eslint-plugin-
   "plugins": [
     "react",
+    "react-hooks",
     "typescript",
     "@typescript-eslint",
-    "react-hooks"
+    "prettier"
   ],
   /*
   * "off" 或 0 - 关闭规则
