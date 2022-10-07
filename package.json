@@ -7,7 +7,7 @@
     "dev": "cross-env NODE_ENV=development webpack-dev-server -c build/webpack.dev.js",
     "build": "cross-env NODE_ENV=production webpack -c build/webpack.prod.js",
     "analy": "cross-env NODE_ENV=production webpack -c build/webpack.analy.js",
-    "lint": "eslint --max-warnings=0",
+    "lint": "eslint --ext js,ts,tsx --max-warnings=0",
     "lint:fix": "eslint --ext js,ts,tsx --fix --max-warnings=0",
     "stylelint:fix": "stylelint src/**/*.*ss --fix --custom-syntax postcss-less",
     "prettier": "prettier --write ."
@@ -17,11 +17,10 @@
   "license": "ISC",
   "lint-staged": {
     "*.{ts,tsx}": [
-      "npx tsc",
-      "npm run lint:fix"
+      "npm run lint"
     ],
     "*.{css,less}": [
-      "npm run stylelint:fix"
+      "npm run stylelint"
     ]
   },
   "dependencies": {
