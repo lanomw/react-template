@@ -1,14 +1,16 @@
-const {merge} = require('webpack-merge')
+const { merge } = require('webpack-merge');
 const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
-const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer')
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
-const prodConfig = require('./webpack.prod.js')
+const prodConfig = require('./webpack.prod.js');
 
 const smp = new SpeedMeasurePlugin();
 
-module.exports = smp.wrap(merge(prodConfig, {
+module.exports = smp.wrap(
+  merge(prodConfig, {
     plugins: [
-        // 配置分析打包结果插件
-        new BundleAnalyzerPlugin()
-    ]
-}))
+      // 配置分析打包结果插件
+      new BundleAnalyzerPlugin(),
+    ],
+  }),
+);

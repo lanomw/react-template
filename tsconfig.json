@@ -1,27 +1,75 @@
 {
     "compilerOptions": {
-        "allowJs": true,
-        "target": "ES5",
-        "module": "ESNext",
-        "strict": true,
-        "jsx": "react",
-        "listFiles": true,
-        "importHelpers": true,
-        "moduleResolution": "node",
-        "experimentalDecorators": true,
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "suppressImplicitAnyIndexErrors": true,
-        "sourceMap": true,
-        "removeComments": true,
-        "downlevelIteration": true,
-        "baseUrl": "."
+        /* Visit https://aka.ms/tsconfig.json to read more about this file */
+        "baseUrl": "./",                             /* Base directory to resolve non-absolute module names. */
+        "paths": {
+            "@/*": ["./src/*"]
+        },
+        /* Basic Options */
+        // "incremental": true,                         /* Enable incremental compilation */
+        "target": "es2015",                                /* 输出代码 ES 版本，可以是: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019', 'ES2020', 'ES2021', or 'ESNEXT'. */
+        "module": "commonjs",                           /* 指定模块生成方式: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'. */
+        "allowJs": true,                             /* 编译时，允许有 js 文件 */
+        "jsx": "react",                           /* jsx 的编译方式: 'preserve', 'react-native', 'react', 'react-jsx' or 'react-jsxdev'. */
+        "sourceMap": true,                           /* 生成对应的 map 文件 */
+        "outDir": "./dist/",                              /* 定义输出文件的文件夹 */
+        "removeComments": true,                      /* 去除注释 */
+        "strict": true,                                 /* 用于指定是否启用所有的类型检查. */
+        "noImplicitAny": false,                       /*   不允许隐式 any，如果true，函数的形参必须带类型，如果叫不出class名的js对象，那就得any，比如（d:any）=>{}如果false，函数的样子更像js  （d）=>{} */
+        "esModuleInterop": true,                        /* 通过导入内容创建命名空间，实现CommonJS和ES模块之间的互操作性 */
+        "skipLibCheck": true,                           /* 对库定义文件跳过类型检查（2.0 以上） */
+        "forceConsistentCasingInFileNames": true,        /* 不允许不同变量来代表同一文件 */
+        "strictNullChecks": true,                    /* null 检查（2.0 以上） */
+        "noFallthroughCasesInSwitch": true,          /* switch 语句中，每个 case 都要有 break */
+        "allowUnreachableCode": true,                 /* 不报告执行不到的代码错误 */
+        "allowUnusedLabels": false,                      /* 不报告未使用的标签错误 */
+        "noImplicitThis": true,                      /* 不允许 this 为隐式 any */
+        "noUnusedLocals": false,                      /* 未使用的本地变量将报错（2.0 以上） */
+        "noUnusedParameters": false,                  /* 未使用的参数将报错（2.0 以上） */
+        "typeRoots": [],                             /* 定义文件的文件夹位置（2.0 以上） */
+        "types": [],                                 /* 设置引入的定义文件（2.0 以上） */
+        "allowSyntheticDefaultImports": true        /* 允许引入没有默认导出的模块，即在tsx中使用js的模块引入方式来引入模块，例如引入react */
+        // "lib": [],                                   /* Specify library files to be included in the compilation. */
+        // "checkJs": true,                             /* Report errors in .js files. */
+        // "declaration": true,                         /* Generates corresponding '.d.ts' file. */
+        // "declarationMap": true,                      /* Generates a sourcemap for each corresponding '.d.ts' file. */
+        // "outFile": "./",                             /* Concatenate and emit output to single file. */
+        // "rootDir": "./",                             /* Specify the root directory of input files. Use to control the output directory structure with --outDir. */
+        // "composite": true,                           /* Enable project compilation */
+        // "tsBuildInfoFile": "./",                     /* Specify file to store incremental compilation information */
+        // "noEmit": true,                              /* Do not emit outputs. */
+        // "importHelpers": true,                       /* Import emit helpers from 'tslib'. */
+        // "downlevelIteration": true,                  /* Provide full support for iterables in 'for-of', spread, and destructuring when targeting 'ES5' or 'ES3'. */
+        // "isolatedModules": true,                     /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */
+        /* Strict Type-Checking Options */
+        // "strictFunctionTypes": true,                 /* Enable strict checking of function types. */
+        // "strictBindCallApply": true,                 /* Enable strict 'bind', 'call', and 'apply' methods on functions. */
+        // "strictPropertyInitialization": true,        /* Enable strict checking of property initialization in classes. */
+        // "alwaysStrict": true,                        /* Parse in strict mode and emit "use strict" for each source file. */
+        /* Additional Checks */
+        // "noImplicitReturns": true,                   /* Report error when not all code paths in function return a value. */
+        // "noUncheckedIndexedAccess": true,            /* Include 'undefined' in index signature results */
+        // "noImplicitOverride": true,                  /* Ensure overriding members in derived classes are marked with an 'override' modifier. */
+        // "noPropertyAccessFromIndexSignature": true,  /* Require undeclared properties from index signatures to use element accesses. */
+        /* Module Resolution Options */
+        // "moduleResolution": "node",                  /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+        // "paths": {},                                 /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+        // "rootDirs": [],                              /* List of root folders whose combined content represents the structure of the project at runtime. */
+        // "preserveSymlinks": true,                    /* Do not resolve the real path of symlinks. */
+        // "allowUmdGlobalAccess": true,                /* Allow accessing UMD globals from modules. */
+        /* Source Map Options */
+        // "sourceRoot": "",                            /* Specify the location where debugger should locate TypeScript files instead of source locations. */
+        // "mapRoot": "",                               /* Specify the location where debugger should locate map files instead of generated locations. */
+        // "inlineSourceMap": true,                     /* Emit a single file with source maps instead of having a separate file. */
+        // "inlineSources": true,                       /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
+        /* Experimental Options */
+        // "experimentalDecorators": true,              /* Enables experimental support for ES7 decorators. */
+        // "emitDecoratorMetadata": true,               /* Enables experimental support for emitting type metadata for decorators. */
+        /* Advanced Options */
     },
-    "paths": {
-        "@/*": ["src/*"]
-    },
-    "lib": ["ES6", "dom"],
-    "include": [],
-    "exclude": ["build", "scripts", "node_modules"]
+    "include": ["src/**/*"]
+,
+    "exclude": [
+        "node_modules"
+    ]
 }
