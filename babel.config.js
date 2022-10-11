@@ -2,7 +2,10 @@
 const isDEV = process.env.NODE_ENV === 'development';
 
 module.exports = {
-  // 执行顺序由右往左,所以先处理ts,再处理jsx,最后再试一下babel转换为低版本语法
+  // @babel/preset-env如果指定了 useBuiltIns: 'usage', 则需要配置 sourceType: "unambiguous"
+  // 参考：https://stackoverflow.com/questions/60243597/why-does-using-babel-preset-env-with-usebuiltins-usage-cause-an-error-in-ha
+  ignore: [/core-js/],
+  sourceType: 'unambiguous',
   presets: [
     [
       '@babel/preset-env',
@@ -11,18 +14,21 @@ module.exports = {
         useBuiltIns: 'usage',
         // 配置使用core-js使用的版本
         corejs: 3,
-        // 设置兼容目标浏览器版本,这里可以不写,babel-loader会自动寻找上面配置好的文件.browserslistrc
-        // "targets": {
-        //  "chrome": 35,
-        //  "ie": 9
-        // },
+        // 不对ES6模块化进行更改，还是使用import引入模块
+        modules: false
       },
     ],
     '@babel/preset-react',
-    '@babel/preset-typescript',
+    '@babel/preset-typescript'
   ],
   plugins: [
-    // 如果是开发模式,就启动react热更新插件
+    // 开发模式启动react热更新插件
     isDEV && require.resolve('react-refresh/babel'),
-  ].filter(Boolean), // 过滤空值
+    [
+      '@babel/plugin-transform-runtime',
+      {
+        corejs: 3
+      },
+    ]
+  ].filter(Boolean) // 过滤空值
 };

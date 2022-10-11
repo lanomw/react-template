@@ -26,9 +26,9 @@ module.exports = merge(baseConfig, {
           compress: {
             // 删除console.log
             pure_funcs: ['console.log'],
-          },
-        },
-      }),
+          }
+        }
+      })
     ],
     // 分隔代码
     splitChunks: {
@@ -49,17 +49,17 @@ module.exports = merge(baseConfig, {
           priority: 1,
         },
         // 提取页面公共代码
-        // commons: {
-        //     // 提取文件命名为commons
-        //     name: 'commons',
-        //     // 只要使用两次就提取出来
-        //     minChunks: 2,
-        //     // 只提取初始化就能获取到的模块,不管异步的
-        //     chunks: 'initial',
-        //     // 提取代码体积大于0就提取出来
-        //     minSize: 0,
-        // }
-      },
+        commons: {
+          // 提取文件命名为commons
+          name: 'commons',
+          // 只要使用两次就提取出来
+          minChunks: 2,
+          // 只提取初始化就能获取到的模块,不管异步的
+          chunks: 'initial',
+          // 提取代码体积大于0就提取出来
+          minSize: 0,
+        }
+      }
     },
   },
   plugins: [
@@ -75,8 +75,8 @@ module.exports = merge(baseConfig, {
             // 忽略index.html
             return !source.includes('index.html');
           },
-        },
-      ],
+        }
+      ]
     }),
     // 抽离css插件
     new MiniCssExtractPlugin({
@@ -94,7 +94,7 @@ module.exports = merge(baseConfig, {
       safelist: {
         // 过滤以ant-开头的类名，哪怕没用到也不删除
         standard: [/^ant-/],
-      },
+      }
     }),
     // 打包时生成gzip文件
     new CompressionPlugin({
@@ -108,6 +108,6 @@ module.exports = merge(baseConfig, {
       threshold: 10240,
       // 压缩率,默认值是 0.8
       minRatio: 0.8,
-    }),
-  ],
+    })
+  ]
 });

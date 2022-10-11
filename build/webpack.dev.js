@@ -8,7 +8,7 @@ const baseConfig = require('./webpack.base.js');
 module.exports = merge(baseConfig, {
   // 开发模式,打包更加快速,省了代码优化步骤
   mode: 'development',
-  // 源码调试模式，异常定位
+  // 开发模式推荐的配置。便于异常问题排查
   devtool: 'eval-cheap-module-source-map',
   plugins: [
     // 开启react模块热替换插件
@@ -24,6 +24,6 @@ module.exports = merge(baseConfig, {
     static: {
       //托管静态资源public文件夹
       directory: path.join(__dirname, '../public'),
-    },
-  },
+    }
+  }
 });

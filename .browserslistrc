@@ -1,4 +1,6 @@
-# 兼容浏览器及最低版本
+# 提供了一种项目共享的目标环境配置，整个项目的babel、eslint，ts等都可以读取到
 
-IE 9 # 兼容IE 9
-chrome 35 # 兼容chrome 35
+# 兼容IE 9
+IE 9
+# 兼容chrome 35
+chrome 35
