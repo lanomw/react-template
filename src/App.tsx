@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import './app.less';
+import './global.less';
 
 function say(name: string): string {
   return `hello, i'm ${name}`;
@@ -18,9 +18,7 @@ const App = () => {
 
       <h2>webpack5+react+ts</h2>
       <p>受控组件</p>
-      <input onChange={onChange}
-type='text'
-value={count} />
+      <input onChange={onChange} type='text' value={count} />
       <br />
       <p>非受控组件</p>
       <input type='text' />

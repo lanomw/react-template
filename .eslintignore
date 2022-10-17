@@ -1,0 +1,11 @@
+# IDE
+.vscode/*
+.idea/*
+*.iml
+
+/node_modules
+/dist
+/package-lock.json
+.DS_Store
+
+README.md

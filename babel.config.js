@@ -15,11 +15,11 @@ module.exports = {
         // 配置使用core-js使用的版本
         corejs: 3,
         // 不对ES6模块化进行更改，还是使用import引入模块
-        modules: false
+        modules: false,
       },
     ],
     '@babel/preset-react',
-    '@babel/preset-typescript'
+    '@babel/preset-typescript',
   ],
   plugins: [
     // 开发模式启动react热更新插件
@@ -27,8 +27,8 @@ module.exports = {
     [
       '@babel/plugin-transform-runtime',
       {
-        corejs: 3
+        corejs: 3,
       },
-    ]
-  ].filter(Boolean) // 过滤空值
+    ],
+  ].filter(Boolean), // 过滤空值
 };

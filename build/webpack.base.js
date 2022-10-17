@@ -37,7 +37,7 @@ module.exports = {
           // \\ for Windows, \/ for Mac OS and Linux
           /node_modules[\\\/]core-js/,
           /node_modules[\\\/]webpack[\\\/]buildin/,
-        ]
+        ],
       },
       //匹配 css和less 文件
       {
@@ -48,7 +48,7 @@ module.exports = {
           'css-loader',
           'postcss-loader',
           'less-loader',
-        ]
+        ],
       },
       // 匹配图片文件
       {
@@ -59,12 +59,12 @@ module.exports = {
           dataUrlCondition: {
             // 小于10kb转base64位
             maxSize: 10 * 1024,
-          }
+          },
         },
         generator: {
           // 文件输出目录和命名
           filename: 'static/images/[name].[chunkhash:8][ext]',
-        }
+        },
       },
       // 匹配字体图标文件
       {
@@ -75,12 +75,12 @@ module.exports = {
           dataUrlCondition: {
             // 小于10kb转base64位
             maxSize: 10 * 1024,
-          }
+          },
         },
         generator: {
           // 文件输出目录和命名
           filename: 'static/fonts/[name].[chunkhash:8][ext]',
-        }
+        },
       },
       // 匹配媒体文件
       {
@@ -91,13 +91,13 @@ module.exports = {
           dataUrlCondition: {
             // 小于10kb转base64位
             maxSize: 10 * 1024,
-          }
+          },
         },
         generator: {
           // 文件输出目录和命名
           filename: 'static/media/[name].[chunkhash:8][ext]',
-        }
-      }
+        },
+      },
     ],
   },
   resolve: {
@@ -115,8 +115,8 @@ module.exports = {
         diagnosticOptions: {
           semantic: true,
           syntactic: true,
-        }
-      }
+        },
+      },
     }),
     // 自动注入js到模板html
     new HtmlWebpackPlugin({
@@ -127,6 +127,6 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env.BASE_ENV': JSON.stringify(process.env.BASE_ENV),
-    })
-  ]
+    }),
+  ],
 };

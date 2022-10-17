@@ -24,6 +24,6 @@ module.exports = merge(baseConfig, {
     static: {
       //托管静态资源public文件夹
       directory: path.join(__dirname, '../public'),
-    }
-  }
+    },
+  },
 });
