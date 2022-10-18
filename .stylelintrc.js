@@ -4,10 +4,10 @@ module.exports = {
     'stylelint-config-standard',
     // 配置stylelint css属性书写顺序插件
     'stylelint-config-recess-order',
-    // 配置stylelint和prettier兼容
-    'stylelint-config-prettier',
+    // 如果同时使用了eslint和prettier发生冲突了，会关闭掉与prettier有冲突的规则，也就是使用prettier认为对的规则
+    'stylelint-prettier/recommended',
   ],
-  plugins: ['stylelint-less', 'stylelint-order', 'stylelint-prettier'],
+  plugins: ['stylelint-less', 'stylelint-order'],
   rules: {
     'prettier/prettier': true,
     'color-no-invalid-hex': true,

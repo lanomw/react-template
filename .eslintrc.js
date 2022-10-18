@@ -7,6 +7,7 @@ module.exports = {
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:import/recommended',
+    'plugin:jsx-a11y/recommended',
     'plugin:@typescript-eslint/recommended',
     // 如果同时使用了eslint和prettier发生冲突了，会关闭掉与prettier有冲突的规则，也就是使用prettier认为对的规则
     'plugin:prettier/recommended',
@@ -20,16 +21,24 @@ module.exports = {
   plugins: [
     'react',
     '@typescript-eslint',
-    'jsx-a11y',
     // eslint 会使用 prettier 的规则对代码格式化
     'prettier',
   ],
   settings: {
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        moduleDirectory: ['node_modules', 'src/'],
+      },
+      alias: {
+        map: [['@', './src/']],
+        extensions: ['.tsx', '.ts', '.jsx', '.js'],
       },
     },
+    'import/extensions': 0,
   },
   rules: {
     'prettier/prettier': ['error'],
