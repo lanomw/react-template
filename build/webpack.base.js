@@ -64,6 +64,13 @@ module.exports = {
               },
             },
           },
+          // 全局less
+          {
+            loader: 'style-resources-loader',
+            options: {
+              patterns: path.resolve(__dirname, '../src/global.less'),
+            },
+          },
         ],
       },
       // 解决antd按需加载与css module冲突
