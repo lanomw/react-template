@@ -22,6 +22,14 @@ module.exports = {
     '@babel/preset-typescript',
   ],
   plugins: [
+    [
+      'import',
+      {
+        // 按需引入antd css
+        libraryName: 'antd',
+        style: true,
+      },
+    ],
     // 开发模式启动react热更新插件
     isDEV && require.resolve('react-refresh/babel'),
     [

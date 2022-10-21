@@ -31,23 +31,58 @@ module.exports = {
       // 匹配.js, .ts, tsx文件
       {
         test: /.(.js|ts|tsx)$/,
-        use: ['thread-loader', 'babel-loader'],
         // webpack官方文档提示：core-js 和 webpack/buildin 如果被 Babel 转码会发生错误
         exclude: [
           // \\ for Windows, \/ for Mac OS and Linux
           /node_modules[\\\/]core-js/,
           /node_modules[\\\/]webpack[\\\/]buildin/,
         ],
+        use: ['thread-loader', 'babel-loader'],
       },
-      //匹配 css和less 文件
+      // 匹配 css和less 文件
       {
         test: /.(css|less)$/,
+        exclude: /node_modules/,
+        use: [
+          // 开发环境使用style-looader,打包模式抽离css
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                mode: 'local',
+                localIdentName: '[local]_[hash:base64:5]',
+              },
+            },
+          },
+          'postcss-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
+          },
+        ],
+      },
+      // 解决antd按需加载与css module冲突
+      {
+        test: /.(css|less)$/,
+        exclude: /src/,
         use: [
           // 开发环境使用style-looader,打包模式抽离css
           isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           'css-loader',
           'postcss-loader',
-          'less-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              lessOptions: {
+                javascriptEnabled: true,
+              },
+            },
+          },
         ],
       },
       // 匹配图片文件
