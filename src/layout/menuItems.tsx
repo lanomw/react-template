@@ -21,6 +21,16 @@ const items: ItemType[] = [
     label: '权限管理',
     key: 'permission',
     icon: <ApartmentOutlined />,
+    children: [
+      {
+        label: '权限节点',
+        key: '/permission/list',
+      },
+      {
+        label: '角色管理',
+        key: '/permission/role',
+      },
+    ],
   },
   {
     label: '用户管理',
