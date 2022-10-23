@@ -1,50 +1,74 @@
-import React, { useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Breadcrumb, Layout, Menu, Space } from 'antd';
-import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
+
+import items from './menuItems';
+
+import type { ItemType } from 'antd/es/menu/hooks/useItems';
 
 import styles from './style.less';
 
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: any[],
-): any {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  };
-}
+function getOpenMenu(pathname: string): string[] {
+  const openMenuList: string[] = [];
 
-const items: any[] = [
-  getItem('Option 1', '1', <PieChartOutlined />),
-  getItem('Option 2', '2', <DesktopOutlined />),
-  getItem('User', 'sub1', <UserOutlined />, [
-    getItem('Tom', '3'),
-    getItem('Bill', '4'),
-    getItem('Alex', '5'),
-  ]),
-  getItem('Team', 'sub2', <TeamOutlined />, [
-    getItem('Team 1', '6'),
-    getItem('Team 2', '8'),
-  ]),
-  getItem('Files', '9', <FileOutlined />),
-];
+  function recursive(list: ItemType[]): boolean {
+    for (let i = 0; i < list.length; i++) {
+      if (list[i]?.key === pathname) {
+        return true;
+      }
+
+      // @ts-ignore
+      if (list[i]?.children?.length && recursive(list[i]?.children)) {
+        openMenuList.push(list[i]?.key as string);
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  recursive(items);
+
+  return openMenuList;
+}
 
 const DefaultLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
+  const [selectedMenuItem, setSelectedMenuItem] = useState<string[]>([]);
+  const [openMenuGroup, setOpenMenuGroup] = useState<string[]>([]);
+
+  const rootMenuKeys = useMemo(() => {
+    return items.map((item: ItemType) => item?.key);
+  }, []);
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChangeCollapse = (value: boolean) => {
     setCollapsed(value);
   };
+
+  const handleSelectMenu = ({ key }: { key: string }) => {
+    setSelectedMenuItem([key]);
+    navigate(key);
+  };
+
+  const handleOpenChange = (keys: string[]) => {
+    const latestOpenKey = keys.find(key => openMenuGroup.indexOf(key) === -1);
+
+    if (rootMenuKeys.indexOf(latestOpenKey) === -1) {
+      setOpenMenuGroup(keys);
+    } else {
+      setOpenMenuGroup(latestOpenKey ? [latestOpenKey] : []);
+    }
+  };
+
+  useEffect(() => {
+    const pathname = location.pathname;
+
+    setSelectedMenuItem([pathname]);
+    setOpenMenuGroup(getOpenMenu(pathname));
+  }, []);
 
   return (
     <Layout className={styles['layout']}>
@@ -55,7 +79,15 @@ const DefaultLayout = () => {
         onCollapse={handleChangeCollapse}
       >
         <div className={styles['logo']}></div>
-        <Menu theme='dark' items={items} mode={'inline'}></Menu>
+        <Menu
+          theme='dark'
+          items={items}
+          mode={'inline'}
+          openKeys={openMenuGroup}
+          onOpenChange={handleOpenChange}
+          selectedKeys={selectedMenuItem}
+          onSelect={handleSelectMenu}
+        ></Menu>
       </Layout.Sider>
       <Layout>
         <Layout.Header className={styles['layout_header']}>
@@ -67,7 +99,7 @@ const DefaultLayout = () => {
           </Space>
         </Layout.Header>
         <Layout.Content className={styles['layout_content']}>
-          Bill is a cat
+          <Outlet />
         </Layout.Content>
         <Layout.Footer className={styles['layout_footer']}>
           Ant Design ©2018 Created by Ant UED

@@ -43,6 +43,9 @@ module.exports = {
   rules: {
     'prettier/prettier': ['error'],
 
+    // 消除 @ts-ignore 报红
+    '@typescript-eslint/ban-ts-comment': 'off',
+
     // 基本规则参考文档地址：https://eslint.bootcss.com/docs/rules
     'no-console': 'off', // 允许使用 console
     radix: 'off', // parseInt方法不强制使用第二个参数
@@ -89,6 +92,7 @@ module.exports = {
     'no-shadow': 'error', // 关闭外部作用域中的变量不能与它所包含的作用域中的变量或参数同名
     'no-extra-semi': 'error', // 禁止多余的分号
     eqeqeq: ['error', 'always'], // 要求使用 === 和 !==
+    'newline-after-var': ['error', 'always'], // 要求 var 声明语句后有一行空行
 
     // react eslint配置参考地址：https://www.npmjs.com/package/eslint-plugin-react
     'react/no-multi-comp': [
